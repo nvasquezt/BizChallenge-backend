@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { getUserByEmail } = require('../../api/users/users.services');
+const { getUserByEmail } = require('../api/users/users.services');
 const compose = require('composable-middleware');
 const jwt = require('jsonwebtoken');
 

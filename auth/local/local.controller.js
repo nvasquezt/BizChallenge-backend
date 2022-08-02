@@ -1,4 +1,4 @@
-const { getUserByEmail } = require ('../../../api/users/users.services');
+const { getUserByEmail } = require ('../../api/users/users.services');
 const { signToken } = require ('../auth.services');
 
 
