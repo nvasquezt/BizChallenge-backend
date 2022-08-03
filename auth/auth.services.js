@@ -24,7 +24,7 @@ function isAuth() {
     });
 }
 
-function hasRole(allowedRoles = []) {
+function hasRole(allowedRoles = ['user', 'admin']) {
     return compose()
         .use(isAuth())
         .use(async function (req, res, next) {

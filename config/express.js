@@ -1,18 +1,12 @@
-const mongooose = require('mongoose');
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
 
-const URI = process.env.MONGO_DB_URI;
+function configExpress(app){
 
-async function connectDB() {
-  try {
-    await mongooose.connect(URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('Connected to database');
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+  app.use(cors());
+  app.use(express.json());
+  app.use(morgan('dev'));
 }
 
-module.exports = connectDB;
+module.exports = configExpress;

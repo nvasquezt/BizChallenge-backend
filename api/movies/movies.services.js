@@ -1,11 +1,11 @@
-const serviceModel = require('./movies.model');
+const moviesModel = require('./movies.model');
 
 const getAllMovies = async () => {
-    return await serviceModel.find();
+    return await moviesModel.find();
 }
 
 const getMovieById = async (id) => {
-    const movie = await serviceModel.findById(id);
+    const movie = await moviesModel.findById(id);
     if (!movie) {
         throw new Error('Movie not found');
     }
@@ -13,12 +13,12 @@ const getMovieById = async (id) => {
 }
 
 const createMovie = async (movie) => {
-    const newMovie = new serviceModel(movie);
+    const newMovie = new moviesModel(movie);
     return await newMovie.save();
 }
 
 const updateMovie = async (id, movie) => {
-    const updatedMovie = await serviceModel.findByIdAndUpdate(id, movie, { new: true });
+    const updatedMovie = await moviesModel.findByIdAndUpdate(id, movie, { new: true });
     if (!updatedMovie) {
         throw new Error('Movie not found');
     }
@@ -27,18 +27,22 @@ const updateMovie = async (id, movie) => {
 
 
 const deleteMovie = async (id) => {
-    const deletedMovie = await serviceModel.findByIdAndDelete(id);
+    const deletedMovie = await moviesModel.findByIdAndDelete(id);
     if (!deletedMovie) {
         throw new Error('Movie not found');
     }
     return deletedMovie;
 }
 
+const getMoviesByQuery = async (query) => {
+    return await moviesModel.find({category: query});
+}
 
-module.exports = {
+    module.exports = {
     getAllMovies,
     getMovieById,
     createMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    getMoviesByQuery
 }

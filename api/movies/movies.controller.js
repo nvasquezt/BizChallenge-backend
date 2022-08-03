@@ -5,7 +5,8 @@ const {
     getAllMovies,
     getMovieById,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    getMoviesByQuery
 } = require('./movies.services');
 
 
@@ -62,8 +63,8 @@ const handlerCreateMovie = async (req, res) => {
       const imagen = result.url;
       req.body.image=imagen;
     }
-    const tags = req.body.tags.split(",");
-    req.body.tags = tags;
+    const cast = req.body.cast.split(",");
+    req.body.cast = cast;
     const service = await createMovie(req.body);
     res.status(201).json(service);
     } catch (error) {
@@ -97,10 +98,25 @@ const handlerDeleteMovie = async (req, res) => {
     }
 }
 
+const handlerMoviesByQuery = async (req, res) => {
+    try {
+        const { query } = req.query;
+        const movies = await getMoviesByQuery(query);
+        res.status(200).json(movies);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+}
+
+
 module.exports = {
     handlerAllMovies,
     handlerGetMovieById,
     handlerCreateMovie,
     handlerUpdateMovie,
-    handlerDeleteMovie
+    handlerDeleteMovie,
+    handlerMoviesByQuery
 }

@@ -5,7 +5,7 @@ const movieSchema = new Schema({
     image: {
         type: String,
         required: true,
-        default: 'https://res.cloudinary.com/dbsumvu1d/image/upload/v1650855803/Imagen-destacada-post-VN-1_ssfest.png',
+        default: 'https://res.cloudinary.com/dunrpkkpq/image/upload/v1659503550/Movies/movies-photo_pdkjk7.png',
     },
     title: {
         type: String,
@@ -13,7 +13,7 @@ const movieSchema = new Schema({
         trim: true
     },
     year: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
@@ -28,6 +28,11 @@ const movieSchema = new Schema({
         trim: true
     },
     synopsis: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    category: {
         type: String,
         required: true,
         trim: true

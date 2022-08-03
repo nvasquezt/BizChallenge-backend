@@ -4,7 +4,6 @@ const cloudinary = require('cloudinary').v2;
 const {
     createUser,
     getUserById,
-    getUserByEmail,
     updateUser,
 } = require('./users.services');
 
@@ -60,22 +59,6 @@ const handlerGetUserById = async (req, res) => {
     }
 }
 
-const handlerGetUserByEmail = async (req, res) => {
-    try {
-        const email = req.params.email;
-        const user = await getUserByEmail(email);
-        if (!user) {
-            return res.status(404).json({
-                message: 'Something went wrong',
-            });
-        }
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-}
-
-
 const handlerUpdateUser = async (req, res) => {
     try {
         const userId = req.params.id;
@@ -95,6 +78,5 @@ const handlerUpdateUser = async (req, res) => {
 module.exports = {
     handlerCreateUser,
     handlerGetUserById,
-    handlerGetUserByEmail,
     handlerUpdateUser,
 };

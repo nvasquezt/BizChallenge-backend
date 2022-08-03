@@ -3,7 +3,7 @@ const users= require('../api/users');
  const authLocal= require('../auth/local');
 
  function routes(app) {
-    app.use('/api/user', users);
+    app.use('/api/users', users);
     app.use('/api/movies', movies);
     app.use('/auth', authLocal);
  }
